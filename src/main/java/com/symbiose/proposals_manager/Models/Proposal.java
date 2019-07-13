@@ -3,21 +3,27 @@ package com.symbiose.proposals_manager.Models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @org.springframework.data.mongodb.core.mapping.Document
 public class Proposal {
     @Id
-    String id;
-    String name;
-    int client_id;
-    ArrayList<String> tags;
-    int budget;
+    private String id;
+    private String name;
+    private String client_id;
+    private List<String> tags;
+    private int budget;
+    private String description;
 
-    public Proposal(String name, int client_id, int budget) {
+    public Proposal(String name, String client_id, List<String> tags, int budget, String description) {
         this.name = name;
         this.client_id = client_id;
+        this.tags = tags;
         this.budget = budget;
+        this.description = description;
     }
 
     public String getId() {
@@ -36,15 +42,15 @@ public class Proposal {
         this.name = name;
     }
 
-    public int getClient_id() {
+    public String getClient_id() {
         return client_id;
     }
 
-    public void setClient_id(int client_id) {
+    public void setClient_id(String client_id) {
         this.client_id = client_id;
     }
 
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -58,6 +64,14 @@ public class Proposal {
 
     public void setBudget(int budget) {
         this.budget = budget;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
