@@ -41,7 +41,7 @@ public class ProposalController {
     // Update
 
     // Delete
-    @RequestMapping(value="proposal/delete", method = RequestMethod.GET)
+    @RequestMapping(value="/proposal/delete", method = RequestMethod.GET)
     public String deleteProposal(@RequestParam String id){
         Optional p = proposalRepository.findById(id);
         if (p.isPresent()){
