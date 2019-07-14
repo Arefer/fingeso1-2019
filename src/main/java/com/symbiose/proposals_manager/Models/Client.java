@@ -41,7 +41,7 @@ public class Client {
         return contactNumber;
     }
 
-    public String getAddres() {
+    public String getAddress() {
         return address;
     }
 
@@ -65,7 +65,7 @@ public class Client {
         this.contactNumber = contactNumber;
     }
 
-    public void setAddres(String addres) {
+    public void setAddress(String addres) {
         this.address = addres;
     }
 

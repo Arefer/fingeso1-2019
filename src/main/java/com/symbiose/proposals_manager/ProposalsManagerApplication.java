@@ -13,6 +13,7 @@ public class ProposalsManagerApplication {
         SpringApplication.run(ProposalsManagerApplication.class, args);
     }
 
+
     @RequestMapping(value = "/")
     public String hello(){
         return "Hello, World!";

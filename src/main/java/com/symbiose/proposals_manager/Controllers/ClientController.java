@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class ClientController {
     private ClientRepository clientRepository;
 
@@ -35,6 +36,11 @@ public class ClientController {
         return cliente;
     }
 
+    @RequestMapping(value="client/getall", method = RequestMethod.GET)
+    public @ResponseBody List<Client> getAllClients(){
+        return clientRepository.findAll();
+    }
+
     //UPDATE
 
     @RequestMapping(value = "/client/update", method = RequestMethod.GET)
@@ -45,8 +51,8 @@ public class ClientController {
 
     // Delete
     @RequestMapping(value="/client/delete", method = RequestMethod.GET)
-    public String deleteClient(@RequestParam String Client_id){
-        Optional c = clientRepository.findById(Client_id);
+    public String deleteClient(@RequestParam String client_id){
+        Optional c = clientRepository.findById(client_id);
         if (c.isPresent()){
             clientRepository.delete((Client)c.get());
             return "Cliente eliminado";
