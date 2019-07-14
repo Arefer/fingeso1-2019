@@ -1,22 +1,42 @@
 package com.symbiose.proposals_manager.Models;
 
 import org.bson.types.Binary;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class File {
-    @Id
-    private String id;
-    private String type;
+    private int id;
+    private String type; // Administrativo, tecnico, otro, etc.
+    private String fileName;
+    private String extension;
     private Binary file;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    public Binary getFile() {
+        return file;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getType() {
@@ -25,10 +45,6 @@ public class File {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Binary getFile() {
-        return file;
     }
 
     public void setFile(Binary file) {

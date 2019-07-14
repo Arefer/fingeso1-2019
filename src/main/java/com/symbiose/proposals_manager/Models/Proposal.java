@@ -17,6 +17,7 @@ public class Proposal {
     private List<String> tags;
     private int budget;
     private String description;
+    private List<File> associatedFiles;
 
     public Proposal(String name, String client_id, List<String> tags, int budget, String description) {
         this.name = name;
@@ -24,6 +25,14 @@ public class Proposal {
         this.tags = tags;
         this.budget = budget;
         this.description = description;
+    }
+
+    public List<File> getAsociatedFiles() {
+        return associatedFiles;
+    }
+
+    public void setAsociatedFiles(List<File> associatedFiles) {
+        this.associatedFiles = associatedFiles;
     }
 
     public String getId() {

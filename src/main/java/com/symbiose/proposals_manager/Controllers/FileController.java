@@ -28,17 +28,24 @@ public class FileController {
 
     @RequestMapping(value="/file/upload", method = RequestMethod.POST)
     public String createFile(@RequestParam("file") MultipartFile f) throws IOException {
+        String fileFullName = f.getOriginalFilename();
+        System.out.println(fileFullName);
+        String[] splittedName = fileFullName.split("\\.");
+        //System.out.println(splittedName[0]);
+        System.out.println("LARGO: " + splittedName.length);
         File newFile = new File();
         newFile.setFile(new Binary(BsonBinarySubType.BINARY, f.getBytes()));
+        newFile.setFileName(splittedName[0]);
+        newFile.setExtension(splittedName[1]);
 
-        return fileRepository.insert(newFile).getId();
+        //return fileRepository.insert(newFile).getId();
+        return null;
     }
 
     @RequestMapping(value="/file/retrieve", method=RequestMethod.GET)
     public byte[] retrieveFile(@RequestParam("id") String id) throws IOException {
         File file = fileRepository.findById(id).get();
-
-        Path path = Paths.get("asdsadasd.c");
+        Path path = Paths.get(file.getFileName() + "." + file.getExtension());
 
         java.nio.file.Files.write(path, file.getFile().getData());
 
