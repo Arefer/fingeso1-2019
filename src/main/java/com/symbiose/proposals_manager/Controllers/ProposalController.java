@@ -63,7 +63,7 @@ public class ProposalController {
 
     // Asocia un documento a la propuesta
     @RequestMapping(value="/proposal/attachFile", method=RequestMethod.POST)
-    public String attachFile(@RequestParam("id") String id, @RequestParam("file") MultipartFile file, @RequestParam("fileType") String fileType){
+    public File attachFile(@RequestParam("id") String id, @RequestParam("file") MultipartFile file, @RequestParam("fileType") String fileType){
         // Busca la propuesta para asociarle el archivo
         Optional oProposal = proposalRepository.findById(id);
         if (oProposal.isPresent()){
@@ -84,16 +84,17 @@ public class ProposalController {
                 newFile.setId(1);
                 p.setAsociatedFiles(Arrays.asList(newFile));
             } else {
-                newFile.setId(p.getAsociatedFiles().size());
+                File lastFile = p.getAsociatedFiles().get(p.getAsociatedFiles().size()-1);
+                newFile.setId(lastFile.getId()+1);
                 List<File> fileList = p.getAsociatedFiles();
                 fileList.add(newFile);
                 p.setAsociatedFiles(fileList);
             }
             proposalRepository.save(p);
-            return "ARCHIVO " + fileFullName + " ASOCIADO CORRECTAMENTE";
+            return newFile;
 
         } else {
-            return "ERROR - La propuesta no existe";
+            return null;
         }
     }
 
