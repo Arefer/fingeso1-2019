@@ -83,6 +83,23 @@ public class Proposal {
         this.description = description;
     }
 
+    /*public File getLastFile(){
+        int lastIndex = this.associatedFiles.size() - 1;
+        return this.associatedFiles.get(lastIndex);
+    }*/
+
+    public void removeFile(int index){
+        this.associatedFiles.remove(index);
+    }
+
+    public void attachFile(File f){
+        this.associatedFiles.add(f);
+    }
+
+    public boolean deleteFile(int fileId){
+        return this.associatedFiles.removeIf(f -> (f.getId() == fileId));
+    }
+
     @Override
     public String toString() {
         return "Proposal{" +

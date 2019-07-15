@@ -98,6 +98,20 @@ public class ProposalController {
         }
     }
 
+    // Elimina un documento asociado a una propuesta
+    @RequestMapping(value="/proposal/deleteFile", method=RequestMethod.GET)
+    public String deleteFile(@RequestParam("proposal_id") String proposal_id, @RequestParam("file_id") int file_id){
+        // Busca la propuesta
+        Optional oProposal = proposalRepository.findById(proposal_id);
+        if (!oProposal.isPresent()) return "ERROR: La propuesta no existe";
+        Proposal p = (Proposal)oProposal.get();
+        if (p.deleteFile(file_id)) {
+            proposalRepository.save(p);
+            return "Documento eliminado";
+        }
+        else return "ERROR: El documento no existe";
+    }
+
     // Descarga un documento asociado a la propuesta
     @RequestMapping(value="proposal/downloadFile", method=RequestMethod.GET)
     public byte[] downloadAssociatedFile(@RequestParam("proposal_id") String proposal_id, @RequestParam("file_id") int file_id) throws IOException {
