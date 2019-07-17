@@ -48,7 +48,10 @@ public class ProposalController {
     }
 
     // Update
-
+    @RequestMapping(value="proposal/edit", method = RequestMethod.POST)
+    public @ResponseBody Proposal editProposal(@RequestBody Proposal p){
+        return proposalRepository.save(p);
+    }
     // Delete
     @RequestMapping(value="/proposal/delete", method = RequestMethod.GET)
     public String deleteProposal(@RequestParam String id){
