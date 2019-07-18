@@ -1,4 +1,4 @@
-package com.symbiose.proposals_manager.Models;
+package com.symbiose.proposals_manager.Client_manager.Models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

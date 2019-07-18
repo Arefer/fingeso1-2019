@@ -1,8 +1,8 @@
-package com.symbiose.proposals_manager.Controllers;
+package com.symbiose.proposals_manager.proposal_manager.Controllers;
 
-import com.symbiose.proposals_manager.DAO.ProposalRepository;
-import com.symbiose.proposals_manager.Models.File;
-import com.symbiose.proposals_manager.Models.Proposal;
+import com.symbiose.proposals_manager.Client_manager.Models.File;
+import com.symbiose.proposals_manager.proposal_manager.Models.Proposal;
+import com.symbiose.proposals_manager.proposal_manager.DAO.ProposalRepository;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,8 @@ public class ProposalController {
 
     // Create
     @RequestMapping(value="/proposal/create", method = RequestMethod.POST)
-    public @ResponseBody Proposal createProposal(@RequestBody Proposal p){
+    public @ResponseBody
+    Proposal createProposal(@RequestBody Proposal p){
         return proposalRepository.save(p);
     }
 
@@ -42,6 +43,11 @@ public class ProposalController {
         return (Proposal)p.get();
     }
 
+    // Devuelve las propuestas asociadas a un user_id
+    @RequestMapping(value="proposal/getProposalsMatchingUserId", method=RequestMethod.GET)
+    public @ResponseBody List<Proposal> getProposalsMatchingUserId(@RequestParam("client_id") String client_id){
+        return proposalRepository.findByClient_id(client_id);
+    }
     @RequestMapping("proposal/getall")
     public List<Proposal> getAllProposals(){
         return proposalRepository.findAll();
@@ -126,6 +132,12 @@ public class ProposalController {
             return "Documento eliminado";
         }
         else return "ERROR: El documento no existe";
+    }
+
+    // Elimina todas las propuestas relacionadas con un client_id
+    @RequestMapping(value="/proposal/deleteByClientId", method = RequestMethod.GET)
+    public @ResponseBody List<Proposal> deleteByClientId(@RequestParam("client_id") String client_id){
+        return proposalRepository.deleteByClient_id(client_id);
     }
 
     // Descarga un documento asociado a la propuesta

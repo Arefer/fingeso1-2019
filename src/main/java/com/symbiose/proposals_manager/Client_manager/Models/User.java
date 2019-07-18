@@ -1,4 +1,4 @@
-package com.symbiose.proposals_manager.Models;
+package com.symbiose.proposals_manager.Client_manager.Models;
 
 
 public class User {

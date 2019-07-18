@@ -1,11 +1,10 @@
-package com.symbiose.proposals_manager.Controllers;
+package com.symbiose.proposals_manager.Client_manager.Controllers;
 
-import com.symbiose.proposals_manager.DAO.ClientRepository;
-import com.symbiose.proposals_manager.Models.Client;
+import com.symbiose.proposals_manager.Client_manager.DAO.ClientRepository;
+import com.symbiose.proposals_manager.Client_manager.Models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +42,7 @@ public class ClientController {
 
     //UPDATE
 
-    @RequestMapping(value = "/client/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/client/update", method = RequestMethod.POST)
     public @ResponseBody Client updateClient (@RequestBody Client client){
         return clientRepository.save(client);
 

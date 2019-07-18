@@ -1,7 +1,7 @@
-package com.symbiose.proposals_manager.DAO;
+package com.symbiose.proposals_manager.Client_manager.DAO;
 
 
-import com.symbiose.proposals_manager.Models.User;
+import com.symbiose.proposals_manager.Client_manager.Models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

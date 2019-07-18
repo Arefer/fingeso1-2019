@@ -1,11 +1,10 @@
-package com.symbiose.proposals_manager.Models;
+package com.symbiose.proposals_manager.proposal_manager.Models;
 
+import com.symbiose.proposals_manager.Client_manager.Models.File;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @org.springframework.data.mongodb.core.mapping.Document
@@ -18,6 +17,15 @@ public class Proposal {
     private int budget;
     private String description;
     private List<File> associatedFiles;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Proposal(String name, String client_id, List<String> tags, int budget, String description) {
         this.name = name;
