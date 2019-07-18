@@ -48,8 +48,12 @@ public class ProposalController {
     }
 
     // Update
+    // Actualiza todos los campos excepto la lista de archivos
     @RequestMapping(value="proposal/edit", method = RequestMethod.POST)
     public @ResponseBody Proposal editProposal(@RequestBody Proposal p){
+        Optional oProposal = proposalRepository.findById(p.getId());
+        if (!oProposal.isPresent()) return null;
+        p.setAsociatedFiles(((Proposal)oProposal.get()).getAsociatedFiles());
         return proposalRepository.save(p);
     }
     // Delete
@@ -100,6 +104,15 @@ public class ProposalController {
             return null;
         }
     }
+
+    /*// Asocia multiples documentos a la propuesta
+    @RequestMapping(value="/proposal/attachMultipleFiles", method=RequestMethod.POST)
+    public List<File> attachMultipleFiles(@RequestParam("id") String id, @RequestParam("files") List<MultipartFile> files){
+        // Busca la propuesta
+        Optional oProposal = proposalRepository.findById(id);
+        if (!oProposal.isPresent()) return null;
+
+    }*/
 
     // Elimina un documento asociado a una propuesta
     @RequestMapping(value="/proposal/deleteFile", method=RequestMethod.GET)
