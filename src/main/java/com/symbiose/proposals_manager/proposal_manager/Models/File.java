@@ -1,4 +1,4 @@
-package com.symbiose.proposals_manager.Client_manager.Models;
+package com.symbiose.proposals_manager.proposal_manager.Models;
 
 import org.bson.types.Binary;
 import org.springframework.data.mongodb.core.mapping.Document;

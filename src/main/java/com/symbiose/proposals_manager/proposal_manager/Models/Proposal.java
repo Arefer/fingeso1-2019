@@ -1,6 +1,5 @@
 package com.symbiose.proposals_manager.proposal_manager.Models;
 
-import com.symbiose.proposals_manager.Client_manager.Models.File;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;

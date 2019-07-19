@@ -1,6 +1,6 @@
 package com.symbiose.proposals_manager.proposal_manager.Controllers;
 
-import com.symbiose.proposals_manager.Client_manager.Models.File;
+import com.symbiose.proposals_manager.proposal_manager.Models.File;
 import com.symbiose.proposals_manager.proposal_manager.Models.Proposal;
 import com.symbiose.proposals_manager.proposal_manager.DAO.ProposalRepository;
 import org.bson.BsonBinarySubType;
